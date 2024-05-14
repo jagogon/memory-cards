@@ -99,8 +99,8 @@ class GameView extends LitElement {
     this.msgUser = 'Memoriza las targetas';
     this.gameInProgress = true;
     this.setRandomNumbers(9);
-    // this.currentNumber = this.numberBoxes[Math.floor(Math.random() * this.numberBoxes.length)];
-    this.currentNumber = 1;
+    this.currentNumber =
+      this.numberBoxes[Math.floor(Math.random() * this.numberBoxes.length)];
     setTimeout(() => {
       this.selectionTime = true;
       this.msgUser = `¿Donde se encuentra el numero: ${this.currentNumber}`;

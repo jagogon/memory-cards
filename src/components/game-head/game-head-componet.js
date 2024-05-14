@@ -1,5 +1,5 @@
 import { LitElement, html, css, unsafeCSS } from 'lit';
-import { PlayerService } from '../services/player-service.js';
+import { PlayerService } from '../../services/player-service.js';
 import styles from './game-head-style.js';
 
 class GameHead extends LitElement {

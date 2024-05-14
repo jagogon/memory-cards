@@ -1,48 +1,65 @@
 const styles = `
 
-main {
-  margin: 16px;
-}
+    main {
+      margin: 16px;
+    }
 
-.button-start {
-  width: 200px;
-  height: 40px;
-  background-color: #007BFF;
-  color: #FFF;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  // transition: background-color 0.3s ease 0s;
-}
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-.button-start:disabled {
-  background-color:  #808080;;
-}
+    .button-start {
+      width: 200px;
+      height: 40px;
+      background-color: #007BFF;
+      color: #FFF;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
 
+    .button-start:disabled {
+      background-color:  #808080;;
+    }
 
-  .box {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    margin: 5px;
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 16px;
+  }
+
+  .card {
+    width: calc(33.33% - 24px);
+    margin-bottom: 24px;
+    background-color: #FFF;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    padding: 16px;
     text-align: center;
-    line-height: 50px;
-    border: 1px solid #000;
-    cursor: pointer;
+
+    span {
+      font-size: 36px;
     }
 
-    .box:hover {
-    background-color: lightgray;
-    }
+  }
 
-    .box.selected {
+  .question{
+    min-height:36px;
+    text-align: center;
+  }
+
+  .correct {
     background-color: green;
-    }
+  }
 
-    .box.wrong {
+  .incorrect {
     background-color: red;
-    }
+  }
+
 
 
 `;

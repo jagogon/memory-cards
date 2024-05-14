@@ -3,7 +3,7 @@ import { Router } from '@vaadin/router';
 import { PlayerService } from '../../services/player-service.js';
 import { DifficultyLevel } from '../../models/difficulty-level-enum.js';
 import styles from './game-style.js';
-import '../../components/game-head-componet.js';
+import '../../components/game-head/game-head-componet.js';
 
 class GameView extends LitElement {
   static properties = {
@@ -14,6 +14,7 @@ class GameView extends LitElement {
     currentNumber: { type: Number },
     numberBoxes: { type: Array },
     selectionTime: { type: Boolean },
+    msgUser: { type: String },
   };
 
   static styles = css`
@@ -25,6 +26,7 @@ class GameView extends LitElement {
 
     const playerService = PlayerService.getInstance();
     if (!playerService.hasPlayerName()) Router.go('/home');
+    this.selectedDifficulty = 0;
     this.reset();
   }
 
@@ -33,6 +35,7 @@ class GameView extends LitElement {
       <game-head></game-head>
 
       <main>
+      <div class="container">
         <p>Puntos: ${this.points}</p>
 
         <button
@@ -43,25 +46,28 @@ class GameView extends LitElement {
           ${this.gameInProgress ? html`Jugando` : html`Comenzar`}
         </button>
 
-        ${this.selectionTime
-          ? html`<p>¿Donde se encuentra el numero: ${this.currentNumber}?</p>`
-          : html``}
+      </div>
 
-        <div>
+      <div class='question'>
+        <p>${this.msgUser}</p>
+      </div>
+
+      </div>
+
+        <div class="card-container">
           ${this.numberBoxes.map(
             (number, index) => html`
               <div
-                class="box"
+                class="card"
                 @click=${() => this.handleBoxClick(index)}
                 @keydown=${() => {}}
               >
-                ${this.selectionTime ? html`?` : html`${number}`}
+                <span>${this.selectionTime ? html`?` : html`${number}`}</span>
               </div>
             `
           )}
         </div>
 
-        <!-- <game-card></game-card> -->
       </main>
     `;
   }
@@ -90,17 +96,18 @@ class GameView extends LitElement {
   }
 
   startGame() {
+    this.msgUser = 'Memoriza las targetas';
     this.gameInProgress = true;
     this.setRandomNumbers(9);
-    this.currentNumber =
-      this.numberBoxes[Math.floor(Math.random() * this.numberBoxes.length)];
+    // this.currentNumber = this.numberBoxes[Math.floor(Math.random() * this.numberBoxes.length)];
+    this.currentNumber = 1;
     setTimeout(() => {
       this.selectionTime = true;
+      this.msgUser = `¿Donde se encuentra el numero: ${this.currentNumber}`;
     }, this.timerDuration);
   }
 
   setRandomNumbers(length) {
-    // Generar números únicos aleatorios del 1 al length
     this.numberBoxes = Array.from({ length }, (_, index) => index + 1).sort(
       () => Math.random() - 0.5
     );
@@ -109,11 +116,25 @@ class GameView extends LitElement {
   handleBoxClick(index) {
     if (this.gameInProgress) {
       this.selectionTime = false;
+      const cardElement = this.shadowRoot.querySelector(
+        `.card:nth-child(${index + 1})`
+      );
+
       if (this.numberBoxes[index] === this.currentNumber) {
         this.points += this.getPointsForDifficulty();
-        this.startGame();
+        cardElement.classList.add('correct');
+        setTimeout(() => {
+          cardElement.classList.remove('correct');
+          this.startGame();
+        }, 3000);
       } else {
-        this.reset();
+        this.msgUser = 'ERROR, fin del juego';
+        cardElement.classList.add('incorrect');
+        setTimeout(() => {
+          this.msgUser = '';
+          cardElement.classList.remove('incorrect');
+          this.reset();
+        }, 1000);
       }
     }
   }

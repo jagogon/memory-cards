@@ -43,7 +43,7 @@ class GameView extends LitElement {
           @click=${this.startGame}
           ?disabled=${this.gameInProgress}
         >
-          ${this.gameInProgress ? html`Jugando` : html`Comenzar`}
+          ${this.gameInProgress ? html`Jugando` : html`Jugar`}
         </button>
 
       </div>
@@ -114,14 +114,17 @@ class GameView extends LitElement {
   }
 
   handleBoxClick(index) {
-    if (this.gameInProgress) {
+    if (this.gameInProgress && this.selectionTime) {
       this.selectionTime = false;
       const cardElement = this.shadowRoot.querySelector(
         `.card:nth-child(${index + 1})`
       );
 
       if (this.numberBoxes[index] === this.currentNumber) {
-        this.points += this.getPointsForDifficulty();
+        const addPoint = this.getPointsForDifficulty();
+        this.points += addPoint;
+
+        this.msgUser = `Correcto: +${addPoint}`;
         cardElement.classList.add('correct');
         setTimeout(() => {
           cardElement.classList.remove('correct');

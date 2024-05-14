@@ -18,13 +18,6 @@ header {
   align-items: center;
 }
 
-.user-info img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
 .user-info span {
   font-size: 16px;
 }
@@ -33,14 +26,20 @@ header {
   padding: 8px;
   font-size: 16px;
   border: none;
-  background-color: #444;
-  color: #fff;
-  border-radius: 5px;
+  background-color: white;
+  color: black;
 }
 
-.right select:hover {
-  background-color: #555;
+.right option {
+  background-color: white;
+  color: black;
 }
+
+.right option:checked {
+  background-color: grey;
+  color: white;
+}
+
 `;
 
 export default styles;

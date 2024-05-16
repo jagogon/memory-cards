@@ -1,11 +1,6 @@
 const CACHE_NAME = 'app-memory-card';
 
-const urlsToCache = [
-  '/',
-  '/bundle.js',
-  '/assets/manifest.json',
-  '/service-worker.js',
-];
+const urlsToCache = ['/', '/bundle.js', '/manifest.json', '/service-worker.js'];
 
 /* eslint-disable no-restricted-globals */
 self.addEventListener('install', event => {

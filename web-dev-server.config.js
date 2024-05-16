@@ -4,6 +4,7 @@
 const hmr = process.argv.includes('--hmr');
 
 export default /** @type {import('@web/dev-server').DevServerConfig} */ ({
+  https: true,
   open: '/',
   watch: !hmr,
   /** Resolve bare module imports */

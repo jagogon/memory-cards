@@ -1,8 +1,8 @@
 {
-  "name": "memory-cards",
+  "name": "game-memory-cards",
   "description": "Webcomponent memory-cards following open-wc recommendations",
   "license": "MIT",
-  "author": "memory-cards",
+  "author": "Javier Gonzalez",
   "version": "0.0.0",
   "type": "module",
   "scripts": {

@@ -18,7 +18,6 @@ class GameHead extends LitElement {
       <header>
         <div class="left">
           <div class="user-info">
-            <img src="/assets/user.svg" alt="user" />
             <span>${this.playerName}</span>
           </div>
         </div>

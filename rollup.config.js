@@ -9,9 +9,9 @@ import path from 'path';
 export default {
   input: 'index.html',
   output: {
-    entryFileNames: '[hash].js',
-    chunkFileNames: '[hash].js',
-    assetFileNames: '[hash][extname]',
+    entryFileNames: 'bundle.js',
+    chunkFileNames: 'chunk.js',
+    assetFileNames: 'asset[extname]',
     format: 'es',
     dir: 'dist',
   },
@@ -22,7 +22,7 @@ export default {
     html({
       minify: true,
       injectServiceWorker: true,
-      serviceWorkerPath: 'dist/sw.js',
+      serviceWorkerPath: 'dist/service-worker.js',
     }),
     /** Resolve bare module imports */
     nodeResolve(),
@@ -58,7 +58,7 @@ export default {
       globIgnores: ['polyfills/*.js', 'nomodule-*.js'],
       navigateFallback: '/index.html',
       // where to output the generated sw
-      swDest: path.join('dist', 'sw.js'),
+      swDest: path.join('dist', 'service-worker.js'),
       // directory to match patterns against to be precached
       globDirectory: path.join('dist'),
       // cache any html js and css by default

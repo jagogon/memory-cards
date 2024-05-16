@@ -4,6 +4,7 @@ import html from '@web/rollup-plugin-html';
 import { importMetaAssets } from '@web/rollup-plugin-import-meta-assets';
 import esbuild from 'rollup-plugin-esbuild';
 import { generateSW } from 'rollup-plugin-workbox';
+import copy from 'rollup-plugin-copy'; // Importa el plugin de copia
 import path from 'path';
 
 export default {
@@ -66,6 +67,13 @@ export default {
       skipWaiting: true,
       clientsClaim: true,
       runtimeCaching: [{ urlPattern: 'polyfills/*.js', handler: 'CacheFirst' }],
+    }),
+    // Configuración para copiar manifest.json a la carpeta public
+    copy({
+      targets: [
+        { src: 'manifest.json', dest: 'public' },
+        { src: 'assets/icons', dest: 'public/assets' },
+      ],
     }),
   ],
 };

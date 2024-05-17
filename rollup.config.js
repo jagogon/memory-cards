@@ -69,10 +69,7 @@ export default {
       runtimeCaching: [{ urlPattern: 'polyfills/*.js', handler: 'CacheFirst' }],
     }),
     copy({
-      targets: [
-        { src: 'manifest.json', dest: 'public/' },
-        { src: 'assets/icons', dest: 'public/assets' },
-      ],
+      targets: [{ src: 'assets/icons', dest: 'public/assets' }],
     }),
   ],
 };

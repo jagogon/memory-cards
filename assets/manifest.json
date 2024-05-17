@@ -1,12 +1,11 @@
 {
   "name": "Game Memory Card",
   "short_name": "Memory Card",
+  "description": "juego de memorizar numeros",
+  "start_url": "/",
   "theme_color": "#fff",
   "background_color": "#fff",
   "display": "standalone",
-  "orientation": "portrait",
-  "scope": "/",
-  "start_url": "/",
   "icons": [
     {
       "src": "icons/icon-72x72.png",

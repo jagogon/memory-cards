@@ -1,5 +1,6 @@
 import { LitElement, html, css, unsafeCSS } from 'lit';
 import { Router } from '@vaadin/router';
+import { createRef, ref } from 'lit/directives/ref.js';
 import { PlayerService } from '../../services/player-service.js';
 import { DifficultyLevel } from '../../models/difficulty-level-enum.js';
 import styles from './game-style.js';
@@ -35,39 +36,38 @@ class GameView extends LitElement {
       <game-head></game-head>
 
       <main>
-      <div class="container">
-        <p>Puntos: ${this.points}</p>
+        <div class="container">
+          <p>Puntos: ${this.points}</p>
 
-        <button
-          class="button-start"
-          @click=${this.startGame}
-          ?disabled=${this.gameInProgress}
-        >
-          ${this.gameInProgress ? html`Jugando` : html`Jugar`}
-        </button>
+          <button
+            class="button-start"
+            @click=${this.startGame}
+            ?disabled=${this.gameInProgress}
+          >
+            ${this.gameInProgress ? html`Jugando` : html`Jugar`}
+          </button>
+        </div>
 
-      </div>
-
-      <div class='question'>
-        <p>${this.msgUser}</p>
-      </div>
-
-      </div>
+        <div class="question">
+          <p>${this.msgUser}</p>
+        </div>
 
         <div class="card-container">
-          ${this.numberBoxes.map(
-            (number, index) => html`
+          ${this.numberBoxes.map((number, index) => {
+            const cardRef = createRef();
+            this.cardElements[index] = cardRef;
+            return html`
               <div
                 class="card"
                 @click=${() => this.handleBoxClick(index)}
                 @keydown=${() => {}}
+                ${ref(cardRef)}
               >
                 <span>${this.selectionTime ? html`?` : html`${number}`}</span>
               </div>
-            `
-          )}
+            `;
+          })}
         </div>
-
       </main>
     `;
   }
@@ -93,17 +93,18 @@ class GameView extends LitElement {
     this.gameInProgress = false;
     this.setDurationTimeForDifficulty();
     this.numberBoxes = [];
+    this.cardElements = [];
   }
 
   startGame() {
-    this.msgUser = 'Memoriza las targetas';
+    this.msgUser = 'Memoriza las tarjetas';
     this.gameInProgress = true;
     this.setRandomNumbers(9);
     this.currentNumber =
       this.numberBoxes[Math.floor(Math.random() * this.numberBoxes.length)];
     setTimeout(() => {
       this.selectionTime = true;
-      this.msgUser = `¿Donde se encuentra el numero: ${this.currentNumber}`;
+      this.msgUser = `¿Dónde se encuentra el número: ${this.currentNumber}?`;
     }, this.timerDuration);
   }
 
@@ -116,28 +117,29 @@ class GameView extends LitElement {
   handleBoxClick(index) {
     if (this.gameInProgress && this.selectionTime) {
       this.selectionTime = false;
-      const cardElement = this.shadowRoot.querySelector(
-        `.card:nth-child(${index + 1})`
-      );
+      const isCorrect = this.numberBoxes[index] === this.currentNumber;
+      const cardElement = this.cardElements[index].value;
 
-      if (this.numberBoxes[index] === this.currentNumber) {
-        const addPoint = this.getPointsForDifficulty();
-        this.points += addPoint;
+      if (cardElement) {
+        if (isCorrect) {
+          const addPoint = this.getPointsForDifficulty();
+          this.points += addPoint;
+          this.msgUser = `Correcto: +${addPoint} puntos`;
+        } else {
+          this.msgUser = 'ERROR, fin del juego';
+        }
 
-        this.msgUser = `Correcto: +${addPoint}`;
-        cardElement.classList.add('correct');
+        cardElement.classList.add(isCorrect ? 'correct' : 'incorrect');
+
         setTimeout(() => {
-          cardElement.classList.remove('correct');
-          this.startGame();
-        }, 3000);
-      } else {
-        this.msgUser = 'ERROR, fin del juego';
-        cardElement.classList.add('incorrect');
-        setTimeout(() => {
+          cardElement.classList.remove('correct', 'incorrect');
           this.msgUser = '';
-          cardElement.classList.remove('incorrect');
-          this.reset();
-        }, 1000);
+          if (isCorrect) {
+            this.startGame();
+          } else {
+            this.reset();
+          }
+        }, 3000);
       }
     }
   }

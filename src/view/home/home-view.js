@@ -2,6 +2,8 @@ import { LitElement, html, css, unsafeCSS } from 'lit';
 import { Router } from '@vaadin/router';
 import { PlayerService } from '../../services/player-service.js';
 import styles from './home-style.js';
+// import '../../models/app-constants.js'
+import { LETTERS_ONLY_REGEX } from '../../models/app-constants.js';
 
 class HomeView extends LitElement {
   static properties = {
@@ -28,8 +30,6 @@ class HomeView extends LitElement {
     const nameInput = this.shadowRoot?.querySelector('#nameInput');
     const playerName = nameInput.value.trim();
     if (playerName) {
-      const LETTERS_ONLY_REGEX = /^[a-zA-Z\s]*$/;
-
       if (LETTERS_ONLY_REGEX.test(playerName)) {
         PlayerService.getInstance().setPlayerName(playerName);
 

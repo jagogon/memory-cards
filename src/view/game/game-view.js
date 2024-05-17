@@ -18,6 +18,10 @@ class GameView extends LitElement {
     msgUser: { type: String },
   };
 
+  timeoutCard;
+
+  timeOutStartGame;
+
   static styles = css`
     ${unsafeCSS(styles)}
   `;
@@ -81,6 +85,8 @@ class GameView extends LitElement {
   disconnectedCallback() {
     super.disconnectedCallback();
     document.removeEventListener('change:level', this.changeLevelListener);
+    if (this.timeoutCard) clearTimeout(this.timeoutCard);
+    if (this.timeOutStartGame) clearTimeout(this.timeOutStartGame);
   }
 
   handleLevelChange(event) {
@@ -102,7 +108,7 @@ class GameView extends LitElement {
     this.setRandomNumbers(9);
     this.currentNumber =
       this.numberBoxes[Math.floor(Math.random() * this.numberBoxes.length)];
-    setTimeout(() => {
+    this.timeOutStartGame = setTimeout(() => {
       this.selectionTime = true;
       this.msgUser = `¿Dónde se encuentra el número: ${this.currentNumber}?`;
     }, this.timerDuration);
@@ -131,7 +137,7 @@ class GameView extends LitElement {
 
         cardElement.classList.add(isCorrect ? 'correct' : 'incorrect');
 
-        setTimeout(() => {
+        this.timeoutCard = setTimeout(() => {
           cardElement.classList.remove('correct', 'incorrect');
           this.msgUser = '';
           if (isCorrect) {

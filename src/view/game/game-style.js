@@ -22,46 +22,43 @@ const styles = `
     }
 
     .button-start:disabled {
-      background-color:  #808080;;
+      background-color: #808080;;
     }
 
-  .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 16px;
-  }
-
-  .card {
-    width: calc(33.33% - 24px);
-    margin-bottom: 24px;
-    background-color: #FFF;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    padding: 16px;
-    text-align: center;
-
-    span {
-      font-size: 36px;
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 16px;
     }
 
-  }
+    .card {
+      width: calc(33.33% - 24px);
+      margin-bottom: 24px;
+      background-color: #FFF;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      padding: 16px;
+      text-align: center;
 
-  .question{
-    min-height:36px;
-    text-align: center;
-  }
+      span {
+        font-size: 36px;
+      }
 
-  .correct {
-    background-color: green;
-  }
+    }
 
-  .incorrect {
-    background-color: red;
-  }
+    .question{
+      min-height:36px;
+      text-align: center;
+    }
 
+    .correct {
+      background-color: green;
+    }
 
-
+    .incorrect {
+      background-color: red;
+    }
 `;
 
 export default styles;

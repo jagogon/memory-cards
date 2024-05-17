@@ -6,7 +6,7 @@ const styles = `
   }
 
   input[type="text"] {
-    width: 300px;
+    width: calc(100vw - 10%);
     height: 40px;
     margin-bottom: 20px;
     padding: 10px;
@@ -16,7 +16,7 @@ const styles = `
   }
 
   button {
-    width: 200px;
+    width: calc(100vw - 10%);
     height: 40px;
     background-color: #007bff;
     color: #fff;

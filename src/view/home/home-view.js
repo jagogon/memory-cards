@@ -2,8 +2,11 @@ import { LitElement, html, css, unsafeCSS } from 'lit';
 import { Router } from '@vaadin/router';
 import { PlayerService } from '../../services/player-service.js';
 import styles from './home-style.js';
-// import '../../models/app-constants.js'
-import { LETTERS_ONLY_REGEX } from '../../models/app-constants.js';
+import {
+  INVALID_NAME_MESSAGE,
+  EMPTY_NAME_MESSAGE,
+  LETTERS_ONLY_REGEX,
+} from '../../models/app-constants.js';
 
 class HomeView extends LitElement {
   static properties = {
@@ -14,33 +17,70 @@ class HomeView extends LitElement {
     ${unsafeCSS(styles)}
   `;
 
+  constructor() {
+    super();
+    this.inputValue = '';
+  }
+
   render() {
     return html`
       <div class="container">
         <h1>Memorizar cartas</h1>
         <h2>Introduce tu nombre</h2>
         <p class="msg">${this.msg}</p>
-        <input id="nameInput" type="text" placeholder="Nombre" />
+        <input
+          type="text"
+          placeholder="Nombre"
+          .value=${this.inputValue}
+          @input=${this.handleInput}
+          @focus=${this.handleFocus}
+          @keydown=${this.handleKeyDown}
+        />
         <button @click=${this.startGame}>Iniciar Juego</button>
       </div>
     `;
   }
 
+  handleInput(event) {
+    this.inputValue = event.target.value.trim();
+  }
+
+  handleFocus() {
+    this.msg = '';
+  }
+
+  handleKeyDown(event) {
+    if (event.key === 'Enter') {
+      this.startGame();
+    }
+  }
+
   startGame() {
-    const nameInput = this.shadowRoot?.querySelector('#nameInput');
-    const playerName = nameInput.value.trim();
+    const playerName = this.inputValue.trim();
+    const { isValidName, msg } = this.validName(playerName);
+
+    if (isValidName) {
+      PlayerService.getInstance().setPlayerName(playerName);
+      Router.go(`/game/`);
+    } else {
+      this.msg = msg;
+    }
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  validName(playerName) {
+    let isValidName = false;
+    let msg = EMPTY_NAME_MESSAGE;
+
     if (playerName) {
       if (LETTERS_ONLY_REGEX.test(playerName)) {
-        PlayerService.getInstance().setPlayerName(playerName);
-
-        Router.go(`/game/`);
+        isValidName = true;
       } else {
-        this.msg =
-          'Por favor, introduce un nombre válido (solo letras y espacios).';
+        msg = INVALID_NAME_MESSAGE;
       }
-    } else {
-      this.msg = 'Por favor, introduce un nombre válido.';
     }
+
+    return { isValidName, msg };
   }
 }
 

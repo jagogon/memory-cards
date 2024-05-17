@@ -68,10 +68,9 @@ export default {
       clientsClaim: true,
       runtimeCaching: [{ urlPattern: 'polyfills/*.js', handler: 'CacheFirst' }],
     }),
-    // Configuración para copiar manifest.json a la carpeta public
     copy({
       targets: [
-        { src: 'manifest.json', dest: 'public' },
+        { src: 'manifest.json', dest: 'public/' },
         { src: 'assets/icons', dest: 'public/assets' },
       ],
     }),

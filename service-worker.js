@@ -1,4 +1,4 @@
-const CACHE_NAME = 'app-memory-card';
+const CACHE_NAME = 'app-game-memory-card';
 
 const urlsToCache = ['/', '/bundle.js', '/manifest.json', '/service-worker.js'];
 

@@ -75,6 +75,7 @@ class HomeView extends LitElement {
     if (playerName) {
       if (LETTERS_ONLY_REGEX.test(playerName)) {
         isValidName = true;
+        msg = '';
       } else {
         msg = INVALID_NAME_MESSAGE;
       }

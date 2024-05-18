@@ -32,7 +32,6 @@
     "@web/rollup-plugin-import-meta-assets": "^1.0.7",
     "@web/test-runner": "^0.14.0",
     "babel-plugin-template-html-minifier": "^4.1.0",
-    "chai": "^5.1.1",
     "deepmerge": "^4.2.2",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.3.0",
@@ -43,7 +42,8 @@
     "rollup": "^2.60.0",
     "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-esbuild": "^5.0.0",
-    "rollup-plugin-workbox": "^6.2.0"
+    "rollup-plugin-workbox": "^6.2.0",
+    "sinon": "^18.0.0"
   },
   "eslintConfig": {
     "extends": [

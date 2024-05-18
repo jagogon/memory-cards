@@ -14,7 +14,7 @@
 - [x] Se ha utilizado un linter para mantener la calidad del código "eslint".
 - [x] Se ha utilizado un formateador de código para mantener la calidad del código "pretier".
 - [x] Se ha utilizado un pre-commit para lanzar el linter antes de realizar un commit.
-- [x] Se ha utilizado un pre-push para lanzar los test antes de realizar un push.
+
 
 ## Decisiones tomadas respecto a la implementación
   ### Tecnologias
@@ -29,69 +29,47 @@
 
 ## Tecnologias utilizadas
 
-- **lit-element**: para la creación de componentes web.
-que se suban test fallidos, y se mantenga la calidad del código".
-- **rollup**: para empaquetar la aplicación.
-- **karma**: para las pruebas unitarias.
--  **eslint**: para mantener la calidad del código.
-- **prettier**: para formatear el código.
+- **Web Components**: Utilizando la especificación de Web Components para crear componentes reutilizables y encapsulados.
+- **LitElement**: Una biblioteca ligera para la creación de componentes web con HTML y JavaScript moderno.
+- **Lit HTML**: Una biblioteca para escribir templates HTML de forma más legible y eficiente.
+- **ES Modules**: Utilizando módulos de JavaScript para organizar y reutilizar el código de manera modular.
+- **Rollup**: Una herramienta de bundling que permite empaquetar los módulos de JavaScript en un único archivo para producción.
+- **Karma**: Un test runner para ejecutar los tests de unidad en diferentes navegadores.
+- **ESLint**: Herramienta de linting para mantener consistencia en el código JavaScript y detectar errores potenciales.
+- **Prettier**: Formateador de código para mantener un estilo de código consistente y legible.
+- **Webpack Dev Server**: Servidor de desarrollo para probar y trabajar en la aplicación localmente durante el desarrollo.
+
 
  
 
 ## Instalación y Uso
 
-Para comenzar a usar este proyecto, sigue estos pasos:
+Para comenzar a usar este proyecto en local, sigue estos pasos:
 
 1. Clona este repositorio en tu máquina local.
 ```bash
 git clone https://github.com/jagogon/memory-cards
 ```
-2. Instala las dependencias del proyecto utilizando npm o yarn.
+2. Navega a la carpeta del proyecto clonado.
+```bash
+cd memory-cards
+```
+3. Instala las dependencias del proyecto utilizando npm o yarn.
 ```bash
 npm install
 ```
-3. Ejecuta el servidor de desarrollo para comenzar a trabajar en tu aplicación.
+4. Ejecuta el servidor de desarrollo para comenzar a trabajar en tu aplicación.
 ```bash
 npm start
 ```
-4. Abre tu navegador y visita http://localhost:8000.
+5. Abre tu navegador y visita http://localhost:8000.
 
 
-### para lanzar los tests
+### Lanzar los tests
 
 ```bash
 npm run test
 ```
 
-
-<!-- <p align="center">
-  <img width="200" src="https://open-wc.org/hero.png"></img>
-</p>
-
-## Open-wc Starter App
-
-[![Built with open-wc recommendations](https://img.shields.io/badge/built%20with-open--wc-blue.svg)](https://github.com/open-wc)
-
-## Quickstart
-
-To get started:
-
-```bash
-npm init @open-wc
-# requires node 10 & npm 6 or higher
-```
-
-## Scripts
-
-- `start` runs your app for development, reloading on file changes
-- `start:build` runs your app after it has been built using the build command
-- `build` builds your app and outputs it in your `public` directory
-- `test` runs your test suite with Web Test Runner
-- `lint` runs the linter for your project
-- `format` fixes linting and formatting errors
-
-## Tooling configs
-
-For most of the tools, the configuration is in the `package.json` to reduce the amount of files in your project.
-
-If you customize the configuration a lot, you can consider moving them to individual files. -->
+## Licencia
+Este proyecto está bajo la licencia [MIT](https://opensource.org/licenses/MIT).

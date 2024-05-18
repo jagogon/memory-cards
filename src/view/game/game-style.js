@@ -16,7 +16,7 @@ const styles = `
       background-color: #007BFF;
       color: #FFF;
       border: none;
-      border-radius: 5px;
+      border-radius: var(--border-radius);
       font-size: 16px;
       cursor: pointer;
     }

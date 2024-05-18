@@ -5,6 +5,7 @@ import { PlayerService } from '../../services/player-service.js';
 import { DifficultyLevel } from '../../models/difficulty-level-enum.js';
 import styles from './game-style.js';
 import '../../components/game-head/game-head-componet.js';
+import { CORRECT_MESSAGE, ERROR_MESSAGE } from '../../models/app-constants.js';
 
 class GameView extends LitElement {
   static properties = {
@@ -125,14 +126,14 @@ class GameView extends LitElement {
       this.selectionTime = false;
       const isCorrect = this.numberBoxes[index] === this.currentNumber;
       const cardElement = this.cardElements[index].value;
+      const points = this.getPointsForDifficulty();
 
       if (cardElement) {
         if (isCorrect) {
-          const addPoint = this.getPointsForDifficulty();
-          this.points += addPoint;
-          this.msgUser = `Correcto: +${addPoint} puntos`;
+          this.points += points;
+          this.msgUser = CORRECT_MESSAGE(points);
         } else {
-          this.msgUser = 'ERROR, fin del juego';
+          this.msgUser = ERROR_MESSAGE;
         }
 
         cardElement.classList.add(isCorrect ? 'correct' : 'incorrect');

@@ -4,7 +4,7 @@ import './game-head-componet.js';
 
 describe('GameHead', () => {
   it('should render player name correctly', async () => {
-    const playerName = 'John Doe';
+    const playerName = 'Javier';
     const el = await fixture(
       html`<game-head .playerName=${playerName}></game-head>`
     );

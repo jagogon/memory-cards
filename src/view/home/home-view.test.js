@@ -1,4 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable no-unused-expressions */
 import { html, fixture, expect } from '@open-wc/testing';
 import './home-view.js';
 import {
@@ -19,8 +20,8 @@ describe('HomeView', () => {
     const button = element.shadowRoot.querySelector('button');
 
     expect(title.textContent).to.equal('Memorizar cartas');
-    expect(input).to.exist; // eslint-disable-line no-unused-expressions
-    expect(button).to.exist; // eslint-disable-line no-unused-expressions
+    expect(input).to.exist;
+    expect(button).to.exist;
   });
 
   it('should update inputValue on input', async () => {
@@ -63,14 +64,14 @@ describe('HomeView', () => {
 
   it('should return isValidName false and EMPTY_NAME_MESSAGE for empty name', () => {
     const { isValidName, msg } = element.validName('');
-    expect(isValidName).to.be.false; // eslint-disable-line no-unused-expressions
+    expect(isValidName).to.be.false;
     expect(msg).to.equal(EMPTY_NAME_MESSAGE);
   });
 
   it('should return isValidName true for a valid name', () => {
     const validName = 'John';
     const { isValidName, msg } = element.validName(validName);
-    expect(isValidName).to.be.true; // eslint-disable-line no-unused-expressions
+    expect(isValidName).to.be.true;
     expect(msg).to.equal('');
   });
 });

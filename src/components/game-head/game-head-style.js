@@ -11,34 +11,33 @@ header {
 .left {
   display: flex;
   align-items: center;
+
+  .user-info {
+    display: flex;
+    align-items: center;
+
+    span {
+      font-size: 16px;
+    }
+
+  }
+
 }
 
-.user-info {
-  display: flex;
-  align-items: center;
+
+.right{
+  select {
+    padding: 8px;
+    font-size: 16px;
+    border: none;
+    background-color: white;
+    color: black;
+  }
+
+
 }
 
-.user-info span {
-  font-size: 16px;
-}
 
-.right select {
-  padding: 8px;
-  font-size: 16px;
-  border: none;
-  background-color: white;
-  color: black;
-}
-
-.right option {
-  background-color: white;
-  color: black;
-}
-
-.right option:checked {
-  background-color: grey;
-  color: white;
-}
 
 `;
 

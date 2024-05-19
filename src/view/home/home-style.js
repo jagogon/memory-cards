@@ -15,6 +15,10 @@ const styles = `
     border-radius: 5px;
   }
 
+  input:focus {
+    outline: 2px solid #007bff;
+  }
+
   button {
     width: calc(100vw - 10%);
     height: 40px;

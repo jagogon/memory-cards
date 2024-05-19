@@ -3,6 +3,10 @@ import { PlayerService } from '../../services/player-service.js';
 import styles from './game-head-style.js';
 
 class GameHead extends LitElement {
+  static properties = {
+    gameInProgress: { type: Boolean },
+  };
+
   static styles = css`
     ${unsafeCSS(styles)}
   `;
@@ -11,6 +15,28 @@ class GameHead extends LitElement {
     super();
     const playerService = PlayerService.getInstance();
     this.playerName = playerService.getPlayerName();
+    this.gameInProgress = false;
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.changeGameInProgress = this.handGameInProgress.bind(this);
+    document.addEventListener(
+      'change:gameInProgress',
+      this.changeGameInProgress
+    );
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    document.removeEventListener(
+      'change:gameInProgress',
+      this.changeGameInProgress
+    );
+  }
+
+  handGameInProgress(event) {
+    this.gameInProgress = event.detail.gameInProgress;
   }
 
   render() {
@@ -22,8 +48,11 @@ class GameHead extends LitElement {
           </div>
         </div>
         <div class="right">
-          <span>Nivel</span>
-          <select @change=${this.handleDifficultyChange}>
+          <label>Nivel</label>
+          <select
+            @change=${this.handleDifficultyChange}
+            ?disabled=${this.gameInProgress}
+          >
             <option value="0">Bajo</option>
             <option value="1">Medio</option>
             <option value="2">Alto</option>

@@ -5,7 +5,12 @@ import { PlayerService } from '../../services/player-service.js';
 import { DifficultyLevel } from '../../models/difficulty-level-enum.js';
 import styles from './game-style.js';
 import '../../components/game-head/game-head-componet.js';
-import { CORRECT_MESSAGE, ERROR_MESSAGE } from '../../models/app-constants.js';
+import {
+  CORRECT_MESSAGE,
+  ERROR_MESSAGE,
+  CARD_MEMORY_MESSAGE,
+  NUMBER_QUESTION_ERROR_MESSAGE,
+} from '../../models/app-constants.js';
 
 class GameView extends LitElement {
   static properties = {
@@ -97,22 +102,34 @@ class GameView extends LitElement {
 
   reset() {
     this.points = 0;
-    this.gameInProgress = false;
+    this.handleGameInProgress(false);
     this.setDurationTimeForDifficulty();
     this.numberBoxes = [];
     this.cardElements = [];
   }
 
   startGame() {
-    this.msgUser = 'Memoriza las tarjetas';
-    this.gameInProgress = true;
+    this.msgUser = CARD_MEMORY_MESSAGE;
+    this.handleGameInProgress(true);
     this.setRandomNumbers(9);
     this.currentNumber =
       this.numberBoxes[Math.floor(Math.random() * this.numberBoxes.length)];
+
     this.timeOutStartGame = setTimeout(() => {
       this.selectionTime = true;
-      this.msgUser = `¿Dónde se encuentra el número: ${this.currentNumber}?`;
+      this.msgUser = NUMBER_QUESTION_ERROR_MESSAGE(this.currentNumber);
     }, this.timerDuration);
+  }
+
+  handleGameInProgress(gameInProgress) {
+    this.gameInProgress = gameInProgress;
+    const eventGameInProgress = new CustomEvent('change:gameInProgress', {
+      detail: { gameInProgress },
+      bubbles: true,
+      cancelable: true,
+    });
+
+    document.dispatchEvent(eventGameInProgress);
   }
 
   setRandomNumbers(length) {

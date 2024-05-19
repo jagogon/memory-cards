@@ -10,6 +10,17 @@
   URL de la app: [https://memory-cards-theta.vercel.app/](https://memory-cards-theta.vercel.app/)
 - [x] Se debe subir un fichero README.md al repositorio con las instrucciones para hacer funcionar la aplicación en local. Puedes añadir cualquier otro dato que consideres necesario.
 
+## Funcionalidad añadida:
+Se ha añadido una clasificación de usuarios que guarda la máxima puntuación obtenida en cualquier participación.
+
+<p align="center">
+<img src="resources/1.png" width="200">
+<img src="resources/2.png" width="200">
+<img src="resources/3.png" width="200">
+<img src="resources/4.png" width="200">
+<img src="resources/5.png" width="200">
+</p>
+
 ## Además:
 - [x] Se ha utilizado un linter para mantener la calidad del código, "eslint".
 - [x] Se ha usado un formateador de código para mantener la calidad del código, "prettier".

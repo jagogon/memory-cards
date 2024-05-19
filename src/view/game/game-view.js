@@ -140,8 +140,10 @@ class GameView extends LitElement {
     this.msgUser = CARD_MEMORY_MESSAGE;
     this.handleGameInProgress(true);
     this.setRandomNumbers(9);
-    this.currentNumber =
-      this.numberBoxes[Math.floor(Math.random() * this.numberBoxes.length)];
+    // this.currentNumber =
+    //   this.numberBoxes[Math.floor(Math.random() * this.numberBoxes.length)];
+
+    this.currentNumber = 1;
 
     this.timeOutStartGame = setTimeout(() => {
       this.selectionTime = true;

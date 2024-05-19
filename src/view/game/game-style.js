@@ -19,6 +19,7 @@ const styles = `
       border-radius: var(--border-radius);
       font-size: var(--font-size);
       cursor: pointer;
+      margin: 16px
     }
 
     .button-start:disabled {
@@ -59,6 +60,24 @@ const styles = `
     .incorrect {
       background-color: var(--color-error);
     }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+
+
 `;
 
 export default styles;

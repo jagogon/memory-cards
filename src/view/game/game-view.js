@@ -22,11 +22,14 @@ class GameView extends LitElement {
     numberBoxes: { type: Array },
     selectionTime: { type: Boolean },
     msgUser: { type: String },
+    maxPoint: { type: Number },
   };
 
   timeoutCard;
 
   timeOutStartGame;
+
+  playerService = PlayerService.getInstance();
 
   static styles = css`
     ${unsafeCSS(styles)}
@@ -34,11 +37,51 @@ class GameView extends LitElement {
 
   constructor() {
     super();
-
-    const playerService = PlayerService.getInstance();
-    if (!playerService.hasPlayerName()) Router.go('/home');
+    if (!this.playerService.hasPlayerName()) Router.go('/home');
     this.selectedDifficulty = 0;
     this.reset();
+  }
+
+  firstUpdated() {
+    this.playerService.getRankingValue().then(maxPointsCache => {
+      this.maxPoint = maxPointsCache;
+    });
+  }
+
+  renderData() {
+    return html`
+      <table>
+        <tbody>
+          <tr>
+            <td>Máxima puntuación</td>
+            <td>${this.maxPoint}</td>
+          </tr>
+          <tr>
+            <td>Puntos</td>
+            <td>${this.points}</td>
+          </tr>
+        </tbody>
+      </table>
+    `;
+  }
+
+  renderCards() {
+    return html`
+      ${this.numberBoxes.map((number, index) => {
+        const cardRef = createRef();
+        this.cardElements[index] = cardRef;
+        return html`
+          <div
+            class="card"
+            @click=${() => this.handleBoxClick(index)}
+            @keydown=${() => {}}
+            ${ref(cardRef)}
+          >
+            <span>${this.selectionTime ? html`?` : html`${number}`}</span>
+          </div>
+        `;
+      })}
+    `;
   }
 
   render() {
@@ -47,7 +90,7 @@ class GameView extends LitElement {
 
       <main>
         <div class="container">
-          <p>Puntos: ${this.points}</p>
+          ${this.renderData()}
 
           <button
             class="button-start"
@@ -62,22 +105,7 @@ class GameView extends LitElement {
           <p>${this.msgUser}</p>
         </div>
 
-        <div class="card-container">
-          ${this.numberBoxes.map((number, index) => {
-            const cardRef = createRef();
-            this.cardElements[index] = cardRef;
-            return html`
-              <div
-                class="card"
-                @click=${() => this.handleBoxClick(index)}
-                @keydown=${() => {}}
-                ${ref(cardRef)}
-              >
-                <span>${this.selectionTime ? html`?` : html`${number}`}</span>
-              </div>
-            `;
-          })}
-        </div>
+        <div class="card-container">${this.renderCards()}</div>
       </main>
     `;
   }
@@ -146,8 +174,10 @@ class GameView extends LitElement {
       const points = this.getPointsForDifficulty();
 
       if (cardElement) {
+        this.playerService.setRanking(this.points);
         if (isCorrect) {
           this.points += points;
+          if (this.points > this.maxPoint) this.maxPoint = this.points;
           this.msgUser = CORRECT_MESSAGE(points);
         } else {
           this.msgUser = ERROR_MESSAGE;

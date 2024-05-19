@@ -2,6 +2,8 @@ import { LitElement, html, css, unsafeCSS } from 'lit';
 import { Router } from '@vaadin/router';
 import { PlayerService } from '../../services/player-service.js';
 import styles from './home-style.js';
+import '../../components/game-ranking/game-ranking-componet.js';
+
 import {
   INVALID_NAME_MESSAGE,
   EMPTY_NAME_MESSAGE,
@@ -12,6 +14,8 @@ class HomeView extends LitElement {
   static properties = {
     msg: { type: String },
   };
+
+  playerService = PlayerService.getInstance();
 
   static styles = css`
     ${unsafeCSS(styles)}
@@ -38,6 +42,8 @@ class HomeView extends LitElement {
           tabindex="0"
         />
         <button @click=${this.startGame}>Iniciar Juego</button>
+
+        <game-ranking></game-ranking>
       </div>
     `;
   }
@@ -61,7 +67,8 @@ class HomeView extends LitElement {
     const { isValidName, msg } = this.validName(playerName);
 
     if (isValidName) {
-      PlayerService.getInstance().setPlayerName(playerName);
+      this.playerService.setPlayerName(playerName);
+
       Router.go(`/game/`);
     } else {
       this.msg = msg;

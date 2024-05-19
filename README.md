@@ -18,7 +18,6 @@ Se ha añadido una clasificación de usuarios que guarda la máxima puntuación 
 <img src="resources/2.png" width="200">
 <img src="resources/3.png" width="200">
 <img src="resources/4.png" width="200">
-<img src="resources/5.png" width="200">
 </p>
 
 ## Además:

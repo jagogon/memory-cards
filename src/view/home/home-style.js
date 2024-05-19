@@ -9,7 +9,7 @@ const styles = `
     width: calc(100vw - 10%);
     height: 40px;
     margin-bottom: 20px;
-    padding: 10px;
+    padding: 8px;
     font-size: var(--font-size);
     border: 1px solid #ccc;
     border-radius: var(--border-radius);

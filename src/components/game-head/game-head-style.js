@@ -19,11 +19,8 @@ header {
     span {
       font-size: var(--font-size);
     }
-
   }
-
 }
-
 
 .right{
   select {
@@ -33,11 +30,7 @@ header {
     background-color: white;
     color: black;
   }
-
-
 }
-
-
 
 `;
 

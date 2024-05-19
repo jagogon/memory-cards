@@ -1,9 +1,17 @@
 :root {
   --color-primary: #007bff;
+  --color-secondary: #fdfcf8;
   --color-success: #00ff00;
   --color-error: #ff0000;
   --font-size:16px;
   --border-radius:4px;
   --margin:16px
+}
 
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--color-secondary);
+  color: #333;
+  margin: 0;
+  padding: 0;
 }

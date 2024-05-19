@@ -17,7 +17,7 @@ header {
     align-items: center;
 
     span {
-      font-size: 16px;
+      font-size: var(--font-size);
     }
 
   }
@@ -28,7 +28,7 @@ header {
 .right{
   select {
     padding: 8px;
-    font-size: 16px;
+    font-size: var(--font-size);
     border: none;
     background-color: white;
     color: black;

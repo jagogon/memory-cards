@@ -10,23 +10,23 @@ const styles = `
     height: 40px;
     margin-bottom: 20px;
     padding: 10px;
-    font-size: 16px;
+    font-size: var(--font-size);
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
   }
 
   input:focus {
-    outline: 2px solid #007bff;
+    outline: 2px solid var(--color-primary);
   }
 
   button {
     width: calc(100vw - 10%);
     height: 40px;
-    background-color: #007bff;
+    background-color: var(--color-primary);
     color: #fff;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: var(--border-radius);
+    font-size: var(--font-size);
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
@@ -36,8 +36,8 @@ const styles = `
   }
 
   .msg {
-    margin: 16px;
-    color: #ff0000;
+    margin: var(--margin);
+    color: var(--color-error);
   }
 
 `;

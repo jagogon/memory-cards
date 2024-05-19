@@ -4,6 +4,7 @@ const urlsToCache = [
   '/',
   '/bundle.js',
   '/assets/manifest.json',
+  '/assets/styles.css',
   '/service-worker.js',
 ];
 

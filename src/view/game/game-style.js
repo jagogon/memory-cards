@@ -1,7 +1,7 @@
 const styles = `
 
     main {
-      margin: 16px;
+      margin: var(--margin);
     }
 
     .container {
@@ -13,11 +13,11 @@ const styles = `
     .button-start {
       width: 200px;
       height: 40px;
-      background-color: #007BFF;
+      background-color: var(--color-primary);
       color: #FFF;
       border: none;
-      border-radius: 5px;
-      font-size: 16px;
+      border-radius: var(--border-radius);
+      font-size: var(--font-size);
       cursor: pointer;
     }
 
@@ -53,11 +53,11 @@ const styles = `
     }
 
     .correct {
-      background-color: green;
+      background-color: var(--color-success);
     }
 
     .incorrect {
-      background-color: red;
+      background-color: var(--color-error);
     }
 `;
 

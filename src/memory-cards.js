@@ -1,19 +1,9 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html } from 'lit';
 import { Router } from '@vaadin/router';
 import './view/home/home-view.js';
 import './view/game/game-view.js';
 
 class MemoryCards extends LitElement {
-  static styles = css`
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      background-color: #ededed;
-    }
-  `;
-
   connectedCallback() {
     super.connectedCallback();
     if ('serviceWorker' in navigator) {

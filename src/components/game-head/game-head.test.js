@@ -18,16 +18,12 @@ describe('GameHead', () => {
     const el = await fixture(html`<game-head></game-head>`);
     const selectElement = el.shadowRoot.querySelector('select');
     const newDifficulty = 1;
-
-    // Espiamos la función dispatchEvent del documento
     const dispatchEventSpy = sinon.spy(document, 'dispatchEvent');
 
-    // Simulamos el evento 'change' en el elemento select
     const event = new Event('change');
     selectElement.value = newDifficulty;
     selectElement.dispatchEvent(event);
 
-    // Verificamos que dispatchEvent haya sido llamada con el evento personalizado
     const changeLevelEvent = new CustomEvent('change:level', {
       detail: { selectedDifficulty: newDifficulty },
       bubbles: true,
@@ -35,7 +31,6 @@ describe('GameHead', () => {
     });
     expect(dispatchEventSpy.calledWith(changeLevelEvent)).to.be.true;
 
-    // Restauramos la función dispatchEvent original
     dispatchEventSpy.restore();
   });
 });

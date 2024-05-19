@@ -7,7 +7,6 @@ describe('PlayerService', () => {
 
   beforeEach(() => {
     service = PlayerService.getInstance();
-    // Reset player name before each test
     service.setPlayerName('');
   });
 

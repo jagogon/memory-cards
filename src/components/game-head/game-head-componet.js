@@ -46,7 +46,7 @@ class GameHead extends LitElement {
       <header>
         <div class="left">
           <div class="user-info">
-            <img src="assets/user.svg" alt="Icono de usuario" />
+            <img src="/assets/user.svg" alt="usuario" />
             <span>${this.playerName}</span>
           </div>
         </div>
@@ -63,7 +63,7 @@ class GameHead extends LitElement {
             </select>
 
             <img
-              src="assets/exit.svg"
+              src="/assets/exit.svg"
               alt="exit"
               @click=${this.handleExit}
               @keydown=${this.handleExit}

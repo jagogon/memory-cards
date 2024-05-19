@@ -6,6 +6,7 @@ const urlsToCache = [
   '/assets/manifest.json',
   '/assets/styles.css',
   '/assets/user.svg',
+  '/assets/exit.svg',
   '/service-worker.js',
 ];
 

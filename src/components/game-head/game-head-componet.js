@@ -1,4 +1,5 @@
 import { LitElement, html, css, unsafeCSS } from 'lit';
+import { Router } from '@vaadin/router';
 import { PlayerService } from '../../services/player-service.js';
 import styles from './game-head-style.js';
 
@@ -11,10 +12,11 @@ class GameHead extends LitElement {
     ${unsafeCSS(styles)}
   `;
 
+  playerService = PlayerService.getInstance();
+
   constructor() {
     super();
-    const playerService = PlayerService.getInstance();
-    this.playerName = playerService.getPlayerName();
+    this.playerName = this.playerService.getPlayerName();
     this.gameInProgress = false;
   }
 
@@ -44,22 +46,37 @@ class GameHead extends LitElement {
       <header>
         <div class="left">
           <div class="user-info">
+            <img src="assets/user.svg" alt="Icono de usuario" />
             <span>${this.playerName}</span>
           </div>
         </div>
         <div class="right">
-          <label>Nivel</label>
-          <select
-            @change=${this.handleDifficultyChange}
-            ?disabled=${this.gameInProgress}
-          >
-            <option value="0">Bajo</option>
-            <option value="1">Medio</option>
-            <option value="2">Alto</option>
-          </select>
+          <div class="right-container">
+            <label>Nivel</label>
+            <select
+              @change=${this.handleDifficultyChange}
+              ?disabled=${this.gameInProgress}
+            >
+              <option value="0">Bajo</option>
+              <option value="1">Medio</option>
+              <option value="2">Alto</option>
+            </select>
+
+            <img
+              src="assets/exit.svg"
+              alt="exit"
+              @click=${this.handleExit}
+              @keydown=${this.handleExit}
+            />
+          </div>
         </div>
       </header>
     `;
+  }
+
+  handleExit() {
+    this.playerName = this.playerService.setPlayerName('');
+    Router.go(`/`);
   }
 
   // eslint-disable-next-line

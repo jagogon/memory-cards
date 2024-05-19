@@ -8,6 +8,8 @@ header {
   color: #fff;
 }
 
+
+
 .left {
   display: flex;
   align-items: center;
@@ -15,21 +17,41 @@ header {
   .user-info {
     display: flex;
     align-items: center;
-
     span {
       font-size: var(--font-size);
     }
+    img {
+      margin:4px
+    }
+
   }
 }
 
 .right{
-  select {
-    padding: 8px;
-    font-size: var(--font-size);
-    border: none;
-    background-color: white;
-    color: black;
+
+  .right-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    select {
+      padding: 8px;
+      margin:0px 8px;
+      font-size: var(--font-size);
+      border: none;
+      background-color: white;
+      color: black;
+    }
+
+    img {
+      height:24px;
+      margin:4px 4px 4px 8px;
+    }
+
   }
+
+
+
 }
 
 `;

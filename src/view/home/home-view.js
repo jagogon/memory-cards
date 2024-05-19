@@ -35,6 +35,7 @@ class HomeView extends LitElement {
           @input=${this.handleInput}
           @focus=${this.handleFocus}
           @keydown=${this.handleKeyDown}
+          tabindex="0"
         />
         <button @click=${this.startGame}>Iniciar Juego</button>
       </div>

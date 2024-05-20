@@ -1,4 +1,4 @@
-import { LitElement, html, css, unsafeCSS } from 'lit';
+import { LitElement, html } from 'lit';
 import { Router } from '@vaadin/router';
 import { PlayerService } from '../../services/player-service.js';
 import styles from './game-head-style.js';
@@ -8,9 +8,7 @@ class GameHead extends LitElement {
     gameInProgress: { type: Boolean },
   };
 
-  static styles = css`
-    ${unsafeCSS(styles)}
-  `;
+  static styles = styles;
 
   playerService = PlayerService.getInstance();
 

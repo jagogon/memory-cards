@@ -1,4 +1,4 @@
-import { LitElement, html, css, unsafeCSS } from 'lit';
+import { LitElement, html } from 'lit';
 import { Router } from '@vaadin/router';
 import { PlayerService } from '../../services/player-service.js';
 import styles from './game-ranking-style.js';
@@ -9,9 +9,7 @@ class GameRanking extends LitElement {
     ranking: { type: Array },
   };
 
-  static styles = css`
-    ${unsafeCSS(styles)}
-  `;
+  static styles = styles;
 
   playerService = PlayerService.getInstance();
 

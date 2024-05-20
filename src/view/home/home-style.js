@@ -1,11 +1,13 @@
-const styles = `
+import { css } from 'lit';
+
+const styles = css`
   .container {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  input[type="text"] {
+  input[type='text'] {
     width: calc(100vw - 10%);
     height: 40px;
     margin-bottom: 20px;
@@ -39,7 +41,6 @@ const styles = `
     margin: var(--margin);
     color: var(--color-error);
   }
-
 `;
 
 export default styles;

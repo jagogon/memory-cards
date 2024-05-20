@@ -1,4 +1,4 @@
-import { LitElement, html, css, unsafeCSS } from 'lit';
+import { LitElement, html } from 'lit';
 import { Router } from '@vaadin/router';
 import { PlayerService } from '../../services/player-service.js';
 import styles from './home-style.js';
@@ -17,9 +17,7 @@ class HomeView extends LitElement {
 
   playerService = PlayerService.getInstance();
 
-  static styles = css`
-    ${unsafeCSS(styles)}
-  `;
+  static styles = styles;
 
   constructor() {
     super();

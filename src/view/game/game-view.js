@@ -1,4 +1,4 @@
-import { LitElement, html, css, unsafeCSS } from 'lit';
+import { LitElement, html } from 'lit';
 import { Router } from '@vaadin/router';
 import { createRef, ref } from 'lit/directives/ref.js';
 import { PlayerService } from '../../services/player-service.js';
@@ -31,9 +31,7 @@ class GameView extends LitElement {
 
   playerService = PlayerService.getInstance();
 
-  static styles = css`
-    ${unsafeCSS(styles)}
-  `;
+  static styles = styles;
 
   constructor() {
     super();
